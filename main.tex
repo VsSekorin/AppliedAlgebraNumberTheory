@@ -1,0 +1,131 @@
+%\documentclass[14pt]{article}
+\documentclass[a4paper,14pt, draft]{report}
+\usepackage[T1,T2A,T2B,T2C]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath,amssymb,amsthm,amscd,amsfonts,mathrsfs,amsthm,mathtools}
+\usepackage[14pt]{extsizes}
+\usepackage{enumerate}
+\usepackage{bussproofs}
+\usepackage{etoolbox}
+\usepackage{indentfirst}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{statement}{Утверждение}
+\newtheorem{lemma}{Лемма}
+\newtheorem{remark}{Замечание}
+\newtheorem{example}{Пример}
+\newtheorem{consequence}{Следствие}
+\def\IF{\ifmmode\mathbf{if}\else\textbf{if}\fi}
+\def\ENDIF{\ifmmode\mathbf{end~if}\else\textbf{end~if}\fi}
+\def\THEN{\ifmmode\mathbf{then}\else\textbf{then}\fi}
+\def\ELSE{\ifmmode\mathbf{else}\else\textbf{else}\fi}
+\usepackage{soulutf8}
+\usepackage{soul}
+%\sodef\an{}{.4em}{1em plus1em}{2em plus.1em minus.1em}
+\usepackage{algpseudocode}
+%\renewenvironment{proof}{\textsc{Доказательство.}}{\qed}
+\def\proofname{\textsc{Доказательство}}
+%\patchcmd{\thebibliography}{\chapter*{\refname}}{}{}{}
+\linespread{1.25}
+\usepackage{setspace}
+\usepackage[left=30mm, top=15mm, right=10mm, bottom=20mm, nohead]{geometry}
+
+%\title{Coursework}
+%\author{Vseslav Sekorin}
+%\date{April 2016}
+
+%
+\usepackage{todonotes}
+\begin{document}
+%\maketitle
+\begin{titlepage}
+\begin{center}
+\vspace{5em}
+
+\textbf{\large Прикладная алгебра и теория чисел}
+\end{center}
+\end{titlepage}
+\renewcommand\contentsname{Оглавление}
+\setcounter{page}{2}
+\tableofcontents\newpage
+%\addcontentsline{toc}{chapter}{Вводная информация}
+\chapter{Вводная информация}
+Эта глава содержит определения, утверждения и теоремы о группах, кольцах и полях. Эта информация понадобится для понимания дальнейшего материала.
+\section{Группы}
+\begin{definition}[Группа]
+\so{Группой $\mathfrak{G}$} называется четверка\\$(G, *^{(2)}, e^{(0)}, -1^{(1)})$, где
+\[
+    \begin{cases}
+        x * (y * z) = (x * y) * z,\\
+        x * e = x,\\
+        x * x^{-1} = e
+    \end{cases}
+\]
+\end{definition}
+\begin{definition}[Абелева группа]
+\so{Абелевой группой} называется группа, в которой $*$ коммутативна ($x * y = y * x$).
+\end{definition}
+\begin{definition}[Порядок]
+\so{Порядок группы}, $ord~\mathfrak{G}$ --- количество элементов.
+\end{definition}
+\begin{definition}[Циклическая группа]
+~\\$G = \{e, x^1, x^2, x^3, \ldots, x^{-1}, x^{-2}, x^{-3}, \ldots\}$
+\end{definition}
+\begin{definition}[Подгруппа]
+$\mathfrak{G}$ - группа $(G, *, e, -1)$. И множество $H \subseteq G$. Тогда $\mathfrak{H}$ называется \so{подгруппой}, если замкнута относительно операций $*, e, -1$.
+\end{definition}
+\colorbox{red}{Продолжение следует...}
+\section{Поля и кольца}
+\colorbox{red}{Будет написано...}
+\chapter{Помехоустойчивое кодирование}
+\section{Метрика Хэмминга}
+\colorbox{red}{Рисунок}
+\begin{definition}[Метрика Хэмминга]
+$\Sigma$ - алфавит, $n$ - длина слова. Слова $u,~v\in\Sigma^n$. Тогда \so{метрика Хэмминга}, $\rho(u, v)$ --- количество позиций в словах $u$, $v$, в которых они различаются.
+\end{definition}
+\begin{theorem}$\rho$ --- метрика.
+\end{theorem}
+\begin{proof}
+Проверим все свойства метрик: \begin{itemize}
+    \item $\rho(u, v) = 0 \Leftrightarrow u = v$
+    \item $\rho(u, v) = \rho(v, u)$
+    \item $\rho(u, v) \ge 0$
+    \item $\rho(u, v) + \rho(v, w) = \rho(u, w)$
+\end{itemize}
+
+\colorbox{red}{Отрезки}
+\end{proof}
+
+$$\Sigma^m \xrightarrow{f}\Sigma^n\rightsquigarrow\Sigma^n\xrightarrow{g}\Sigma^m$$
+$c$ --- кодовое слово\\$c'$ --- слово с ошибками
+
+\colorbox{red}{Окружности}
+
+\begin{theorem}Код обнаруживает $n$ ошибок $\Leftrightarrow$ $\rho(c_1, c_2) > n$ для любых кодовых слов $c_1$, $c_2$.
+\end{theorem}
+\begin{proof}$(\Rightarrow)$ Допустим $\rho(c_1, c_2)\le n$. $c_1$ и $c_2$ отличаются не более чем в $n$ позициях. Можно в $c_1$ сделать $n$ ошибок и получить $c_2$.
+
+$(\Leftarrow)$ $\rho(c_1, c_2) > n$. Слово $c'$ содержит не больше $n$ ошибок, $c$ --- исходное слово. Следовательно, если $c \neq c'$ --- ошибки были.
+\end{proof}
+\begin{definition}[Наименьшее расстояние]
+Наименьшее расстояние между кодовыми словами (\so{минимальное раастояние кода}) --- число измененных символов, необходимое для перехода одного кодового слова в другое.
+\end{definition}
+
+Минимальное расстояние кода является главной характеристикой кода.
+
+\begin{theorem}Код может исправить $\le n$ ошибок $\Leftrightarrow$ минимальное расстояние этого кода $>2n$.
+\end{theorem}
+\begin{proof}$(\Rightarrow)$ Допустим, минимальное расстояние $\le 2n$. $$\rho(c_1, c_2)\le 2n$$
+
+Существует $c'$: $\rho(c', c_1)\le n$ и $\rho(c', c_2)\le n$.\\$c'$ --- принятое сообщение. Исправление невозможно.
+
+$(\Leftarrow)$ $\rho(c_1, c_2) > 2n$.
+
+$c'$ --- слово с не более чем $n$ ошибками. Существует единственное кодовое слово $c$, для которого $\rho(c, c')\le n$. Следовательно, $c$ --- единствено возможный результат декодирования.
+\end{proof}
+%\section{Примеры кодов}
+%\subsection{С проверкой на четность}
+%\subsection{Дублирующий код}
+%\section{Код Хэмминга}
+\end{document}
