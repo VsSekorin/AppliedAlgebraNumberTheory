@@ -1,4 +1,3 @@
-%\documentclass[14pt]{article}
 \documentclass[a4paper,14pt, draft]{report}
 \usepackage[T1,T2A,T2B,T2C]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -16,29 +15,16 @@
 \newtheorem{remark}{Замечание}
 \newtheorem{example}{Пример}
 \newtheorem{consequence}{Следствие}
-\def\IF{\ifmmode\mathbf{if}\else\textbf{if}\fi}
-\def\ENDIF{\ifmmode\mathbf{end~if}\else\textbf{end~if}\fi}
-\def\THEN{\ifmmode\mathbf{then}\else\textbf{then}\fi}
-\def\ELSE{\ifmmode\mathbf{else}\else\textbf{else}\fi}
 \usepackage{soulutf8}
 \usepackage{soul}
-%\sodef\an{}{.4em}{1em plus1em}{2em plus.1em minus.1em}
 \usepackage{algpseudocode}
-%\renewenvironment{proof}{\textsc{Доказательство.}}{\qed}
 \def\proofname{\textsc{Доказательство}}
-%\patchcmd{\thebibliography}{\chapter*{\refname}}{}{}{}
 \linespread{1.25}
 \usepackage{setspace}
 \usepackage[left=30mm, top=15mm, right=10mm, bottom=20mm, nohead]{geometry}
 
-%\title{Coursework}
-%\author{Vseslav Sekorin}
-%\date{April 2016}
-
-%
 \usepackage{todonotes}
 \begin{document}
-%\maketitle
 \begin{titlepage}
 \begin{center}
 \vspace{5em}
@@ -49,7 +35,6 @@
 \renewcommand\contentsname{Оглавление}
 \setcounter{page}{2}
 \tableofcontents\newpage
-%\addcontentsline{toc}{chapter}{Вводная информация}
 \chapter{Вводная информация}
 Эта глава содержит определения, утверждения и теоремы о группах, кольцах и полях. Эта информация понадобится для понимания дальнейшего материала.
 \section{Группы}
@@ -124,8 +109,51 @@ $(\Leftarrow)$ $\rho(c_1, c_2) > 2n$.
 
 $c'$ --- слово с не более чем $n$ ошибками. Существует единственное кодовое слово $c$, для которого $\rho(c, c')\le n$. Следовательно, $c$ --- единствено возможный результат декодирования.
 \end{proof}
-%\section{Примеры кодов}
-%\subsection{С проверкой на четность}
-%\subsection{Дублирующий код}
-%\section{Код Хэмминга}
+\section{Примеры кодов}
+\subsection{С проверкой на четность}
+Алфавит $\Sigma = \{0, 1\}$, $m$ --- длина слов. Тогда $f$ --- кодирующая функция: $$f(u) = u \Big(\overset{m}{\underset{i=1}{\Sigma}} u\Big),$$ где $u\in\Sigma^m$.
+
+Минимальное расстояние этого кода = 2. Следовательно, он может обнаружить 1 ошибку, но ни одной не может исправить.
+\subsection{Дублирующий код}
+Кодирующая функция $f$: $$f(u) = \underbrace{uu\ldots u}_\text{k раз},$$ где $u\in\Sigma^m$, $k\in\omega$.
+
+Минимальное расстояние дублируещего кода равен количеству повторений ($k$). Следовательно, он может обнаружить $k-1$ ошибку, а исправить $\big[\frac{k-1}{2}\big]$. Основным минусом этого кода является то, что он порождает слишком длинные кодовые слова.
+\section{Код Хэмминга}
+$r\in\mathbb{Z^+}$. Числа $\neq0$ с двоичной записью длины $\le r$.
+
+Матрица $r\times(2^r-1)$. Пусть $r = 3$, получается матрица $3\times8$:\[
+\begin{pmatrix}
+    0&0&1\\
+    0&1&0\\
+    0&1&1\\
+    1&0&0\\
+    1&0&1\\
+    1&1&0\\
+    1&1&1\\
+\end{pmatrix}\]
+
+$u$ --- исходное слово, $|u| = 2^r-1-r$. $v$ --- проверочная часть, $|v| = r$. Тогда кодовое слово - $uv$. Получаем ($2^r-1-r$, $2^r-1$)-код.
+
+$v_i$: $i$-й столбец, просуммировать $u$ отмеченные 1. $$v_i = \underset{u}{\Sigma}~u_j\times a_{ij}$$
+Минимальное расстояние: 3. \colorbox{red}{Добавить пояснение}
+
+\colorbox{red}{Пример}
+
+\section{Оптимальность}
+
+$d > 2$
+
+\colorbox{red}{Рисунок}
+
+($m$, $n$)-код. $2^m (1+n) \le 2^n$
+\begin{definition}[Совершенный код]
+\so{Совершенный код} --- <<шары>> полностью закрывают пространство: $2^m (1+n) = 2^n$.
+\end{definition}
+
+Для кода Хэмминга: $2^{2^r-1-r}(1+2^r-1) = 2^{2^r-1}.$
+
+\section{Групповые и линейные коды}
+\begin{definition}
+\so{Код групповой}, если множество кодовых слов --- аддитивная группа. \so{Код линейный}, если множество кодовых слов --- подпространство.
+\end{definition}
 \end{document}
