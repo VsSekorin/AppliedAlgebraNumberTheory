@@ -17,12 +17,10 @@
 \newtheorem{consequence}{Следствие}
 \usepackage{soulutf8}
 \usepackage{soul}
-\usepackage{algpseudocode}
 \def\proofname{\textsc{Доказательство}}
 \linespread{1.25}
 \usepackage{setspace}
 \usepackage[left=30mm, top=15mm, right=10mm, bottom=20mm, nohead]{geometry}
-
 \usepackage{todonotes}
 \begin{document}
 \begin{titlepage}
@@ -111,7 +109,7 @@ $c'$ --- слово с не более чем $n$ ошибками. Сущест
 \end{proof}
 \section{Примеры кодов}
 \subsection{С проверкой на четность}
-Алфавит $\Sigma = \{0, 1\}$, $m$ --- длина слов. Тогда $f$ --- кодирующая функция: $$f(u) = u \Big(\overset{m}{\underset{i=1}{\Sigma}} u\Big),$$ где $u\in\Sigma^m$.
+Алфавит $\Sigma = \{0, 1\}$, $m$ --- длина слов. Тогда $f$ --- кодирующая функция: $$f(u) = u \Big(\sum^m_{i=1} u\Big),$$ где $u\in\Sigma^m$.
 
 Минимальное расстояние этого кода = 2. Следовательно, он может обнаружить 1 ошибку, но ни одной не может исправить.
 \subsection{Дублирующий код}
@@ -134,8 +132,10 @@ $r\in\mathbb{Z^+}$. Числа $\neq0$ с двоичной записью дли
 
 $u$ --- исходное слово, $|u| = 2^r-1-r$. $v$ --- проверочная часть, $|v| = r$. Тогда кодовое слово - $uv$. Получаем ($2^r-1-r$, $2^r-1$)-код.
 
-$v_i$: $i$-й столбец, просуммировать $u$ отмеченные 1. $$v_i = \underset{u}{\Sigma}~u_j\times a_{ij}$$
-Минимальное расстояние: 3. \colorbox{red}{Добавить пояснение}
+$v_i$: $i$-й столбец, просуммировать $u$ отмеченные 1. $$v_i = \sum_u u_j\times a_{ij}$$
+Минимальное расстояние: 3.
+
+\colorbox{red}{Добавить пояснение}
 
 \colorbox{red}{Пример}
 
@@ -155,5 +155,21 @@ $d > 2$
 \section{Групповые и линейные коды}
 \begin{definition}
 \so{Код групповой}, если множество кодовых слов --- аддитивная группа. \so{Код линейный}, если множество кодовых слов --- подпространство.
+\end{definition}
+\begin{consequence}Если поле $\mathfrak{F}$ простое, то линейный и групповой код совпадают.
+\end{consequence}
+\begin{proof}
+$(\Leftarrow)$ $u, a \in\mathfrak{F}\\ a = 1+\ldots+1$, $a\times u = u+\ldots+u\\
+\rho(c_1, c_2) = \rho(c_1-c_1, c_2-c_1)= \rho(0, c_2-c_1) = w(c_2-c_1).$
+\end{proof}
+Количество ненулевых элементов в $u$ --- вес $u$. Обозначение: $w(u)$.
+\begin{consequence}Минимальное расстояние группового кода $=w(c)$ --- кодовое слово наименьшего веса.
+\end{consequence}
+
+$\Sigma^m$ --- исходные вектора. $\Sigma^n\supseteq L$ --- множество кодовых слов.\\$|L| = |\Sigma^m|, \dim L = m.$
+\[\{u_1, \ldots, u_m\} = \begin{Bmatrix}(1 0 \ldots 0)\\(0 \ldots 0 1)\end{Bmatrix}\]
+
+\begin{definition}[Системный код]
+\so{Системный код} --- линейный код с матрицей вида $$\big(I|A\big)$$
 \end{definition}
 \end{document}
